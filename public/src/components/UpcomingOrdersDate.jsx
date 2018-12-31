@@ -21,6 +21,9 @@ function UpcomingOrdersDate({
   return (
     <DatePicker
       onChange={date => makeUpdates(date)}
+      onActiveDateChange={({ activeStartDate, view }) => console('Changed view to: ', activeStartDate, view)}
+      clearIcon={null}
+      onClickDay={date => makeUpdates(date)}
       value={value}
       minDate={new Date()}
     />

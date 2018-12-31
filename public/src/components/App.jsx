@@ -7,7 +7,7 @@ import CheckForNewUser from './CheckForNewUser.jsx';
 // import CurrentInventory from './Inventory.jsx';
 // import UpcomingOrders from './UpcomingOrders.jsx';
 // import UpcomingOrdersDate from './UpcomingOrdersDate.jsx';
-import TempComponent from './tempComponent.jsx';
+import TempComponent from './TempComponent.jsx';
 
 const useInputValue = (initialValue) => {
   const [value, setValue] = useState(initialValue);
@@ -57,7 +57,7 @@ export default function App() {
     if (isNaN(Number(phoneNumber.value[13]))) {
       return (
         <div>
-          <h1 className="title"> EVENTS-PLUS-PLUS </h1>
+          <h1 className="title"> EVENTS++ </h1>
           <PhoneField {...properties} />
           {(!firstNumberIsNull ? <span /> : (
             <TempComponent
@@ -70,7 +70,7 @@ export default function App() {
       );
     } return (
       <div>
-        <h1 className="title"> EVENTS-PLUS-PLUS </h1>
+        <h1 className="title"> EVENTS++ </h1>
         <CheckForNewUser {...properties} />
       </div>
     );
