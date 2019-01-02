@@ -37,7 +37,7 @@ function DateRangePicker({
         value={dateRange.value}
         minDate={new Date()}
         disableClock
-        isCalendarOpen
+        // isCalendarOpen
       />
       <button type="button" onClick={e => updateOrderDate(e)}>
         CLICK FOR EVENT DETAILS!

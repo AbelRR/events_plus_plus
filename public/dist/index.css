@@ -13,17 +13,6 @@ body {
   background: #f8fdf3;
 }
 
-.App {
-  width: 100%;
-  max-width: 900px;
-  margin: 2.5em auto;
-  border-radius: 0.35em;
-  background: #fcfcfc;
-  overflow: hidden;
-  -webkit-box-shadow: 0 0 26px rgba(0, 0, 0, 0.13);
-  box-shadow: 0 0 26px rgba(0, 0, 0, 0.13);
-}
-
 .upcomingOrdersInfo{
   padding-left: 40px;
   padding-right: 40px;
