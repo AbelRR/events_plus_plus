@@ -4,7 +4,7 @@ import moment from 'moment';
 import UpcomingOrders from './UpcomingOrders.jsx';
 import UpcomingOrdersDate from './UpcomingOrdersDate.jsx';
 
-function temporaryComponent({
+function UpcomingOrdersComponent({
   startOfDateRange,
   listOfOrders,
   rangeInWeeks,
@@ -19,6 +19,11 @@ function temporaryComponent({
           startOfDateRange={startOfDateRange}
           listOfOrders={listOfOrders}
         />
+        <span>
+          # of Weeks:
+          {' '}
+          <input type="number" className="weeksInput" onChange={e => rangeInWeeks.onChange(e)} />
+        </span>
         <p>
           FROM:
           {' '}
@@ -28,11 +33,6 @@ function temporaryComponent({
           {' '}
           {moment(startOfDateRange.value).add(rangeInWeeks.value, 'weeks').format('MMMM Do YYYY')}
         </p>
-        <span>
-          # of Weeks:
-          {' '}
-          <input type="number" className="weeksInput" onChange={e => rangeInWeeks.onChange(e)} />
-        </span>
       </span>
       <UpcomingOrders
         className="upcomingOrdersList"
@@ -42,4 +42,4 @@ function temporaryComponent({
   );
 }
 
-export default temporaryComponent;
+export default UpcomingOrdersComponent;

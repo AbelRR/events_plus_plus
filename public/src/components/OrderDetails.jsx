@@ -1,5 +1,7 @@
 import React from 'react';
 
+import LocationSearchInput from './PlacesAutocomplete.jsx';
+
 function OrderDetails({
   orderDetails,
   updatePageSelector,
@@ -8,6 +10,7 @@ function OrderDetails({
     notes,
     contact,
     balanceOwed,
+    orderLocation,
   } = orderDetails;
 
   const updateOrderDetails = (e) => {
@@ -26,6 +29,11 @@ function OrderDetails({
         <span>
           Notes:
           <input name="notes" type="text" onChange={e => notes.onChange(e)} required />
+        </span>
+        <br />
+        <span>
+          Order location:
+          <LocationSearchInput updateAddress={e => orderLocation.setValue(e)} required />
         </span>
         <br />
         <span>

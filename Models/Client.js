@@ -12,6 +12,7 @@ const orderSchema = mongoose.Schema({
   contact: String,
   notes: String,
   balanceOwed: Number,
+  orderLocation: String,
 });
 
 const clientSchema = mongoose.Schema({

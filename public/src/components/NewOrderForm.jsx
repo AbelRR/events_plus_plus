@@ -26,6 +26,7 @@ function selectingFunction(
   phoneNumber,
   updateUserIndex,
   userData = [],
+  listOfOrders,
 ) {
   const pageSelector = useInputValue('newOrder');
   const dateRange = useInputValue([new Date(), new Date()]);
@@ -36,6 +37,8 @@ function selectingFunction(
   const notes = useInputValue('');
   const balanceOwed = useInputValue(0);
   const contact = useInputValue('');
+  const orderLocation = useInputValue('');
+  const order = {};
 
   const eventDetails = {
     tables,
@@ -53,6 +56,7 @@ function selectingFunction(
     notes,
     balanceOwed,
     contact,
+    orderLocation,
   };
 
   const newOrder = {
@@ -97,18 +101,30 @@ function selectingFunction(
       />
     );
   } if (pageSelector.value === 'summary') {
+    order.phone = phoneNumber.value;
+    order.from = dateRangeObj.from;
+    order.to = dateRangeObj.to;
+    order.event = {
+      chairs: eventDetails.chairs.value,
+      tables: eventDetails.tables.value,
+      jumpers: eventDetails.jumpers.value,
+      canopies: eventDetails.canopies.value,
+    };
+    order.balanceOwed = orderDetails.balanceOwed.value;
+    order.contact = orderDetails.contact.value;
+    order.notes = orderDetails.notes.value;
+    order.orderLocation = orderDetails.orderLocation.value;
+
     return (
       <Summary
         newOrder={newOrder}
+        orderObject={order}
         updatePageSelector={pageSelector.setValue}
-        clientObj={
-          axios.get(`client/${clientId}`)
-            .then(res => res.data[0])
-        }
         updateUserIndex={updateUserIndex}
         updatePhoneNumber={phoneNumber.setValue}
         userData={userData}
         clientId={clientId}
+        listOfOrders={listOfOrders}
       />
     );
   } if (pageSelector.value === 'newOrder') {
@@ -125,11 +141,12 @@ function selectingFunction(
   }
 }
 
-function NewClientOrNewOrder({
+function NewOrderForm({
   clientId,
   phoneNumber,
   updateUserIndex,
   userData,
+  listOfOrders,
 }) {
   return (
     <div>
@@ -143,6 +160,6 @@ function NewClientOrNewOrder({
   );
 }
 
-export default NewClientOrNewOrder;
+export default NewOrderForm;
 
 // ***************** TODO: ADD PROPTYPES ***************** //

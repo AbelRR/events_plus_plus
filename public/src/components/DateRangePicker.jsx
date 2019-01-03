@@ -15,7 +15,7 @@ function DateRangePicker({
   // const dateRange = useInputValue([new Date(), new Date()]);
   return (
     <div>
-      <h2> select days & time for PICKUP and DELIVERY</h2>
+      <h2> select days & time for PICKUP and DELIVERY </h2>
       {dateRange.value.map((date, index) => (index === 0
         ? (
           <p key={`${date}${index + 1}`} className="startDate">

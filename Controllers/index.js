@@ -35,9 +35,8 @@ module.exports = {
       if (err) return callback(err, null);
       const arrOfOrders = [];
       items.forEach((person) => {
-        person.orders.map((order) => {
-          const { _id } = order;
-          if (order.from >= fromDateInMilliseconds) {
+        person.orders.forEach((order) => {
+          if (order.from >= fromDateInMilliseconds - 64800000) {
             arrOfOrders.push({
               phone: person.phone,
               order,

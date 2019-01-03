@@ -7,7 +7,7 @@ import CheckForNewUser from './CheckForNewUser.jsx';
 // import CurrentInventory from './Inventory.jsx';
 // import UpcomingOrders from './UpcomingOrders.jsx';
 // import UpcomingOrdersDate from './UpcomingOrdersDate.jsx';
-import TempComponent from './TempComponent.jsx';
+import UpcomingOrdersComponent from './UpcomingOrdersComponent.jsx';
 
 const useInputValue = (initialValue) => {
   const [value, setValue] = useState(initialValue);
@@ -36,7 +36,6 @@ export default function App() {
   const startOfDateRange = useInputValue(new Date());
   const rangeInWeeks = useInputValue(1);
   const listOfOrders = useInputValue([]);
-  const orderInProgress = useInputValue(false);
 
   useEffect(() => {
     getDataFromAPI(setUserData);
@@ -45,8 +44,10 @@ export default function App() {
       .then(res => res.data)
       .then(data => data.map(item => Object.assign({ phone: item.phone }, item.order)))
       .then(data => data.sort((a, b) => a.from - b.from))
-      .then(data => listOfOrders.setValue(data));
-  }, []);
+      .then((data) => {
+        listOfOrders.setValue(data);
+      });
+  }, [listOfOrders.value]);
 
   const properties = {
     phoneNumber, currentNumberId, userData,
@@ -60,7 +61,7 @@ export default function App() {
           <h1 className="title"> EVENTS++ </h1>
           <PhoneField {...properties} />
           {(!firstNumberIsNull ? <span /> : (
-            <TempComponent
+            <UpcomingOrdersComponent
               startOfDateRange={startOfDateRange}
               listOfOrders={listOfOrders}
               rangeInWeeks={rangeInWeeks}
@@ -71,7 +72,10 @@ export default function App() {
     } return (
       <div>
         <h1 className="title"> EVENTS++ </h1>
-        <CheckForNewUser {...properties} />
+        <CheckForNewUser
+          {...properties}
+          listOfOrders={listOfOrders}
+        />
       </div>
     );
   };

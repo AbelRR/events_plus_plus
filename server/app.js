@@ -69,7 +69,7 @@ app.get('/lastOrder/:_id', (req, res) => {
       } = data[0];
 
       const {
-        notes, balanceOwed, contact, from, to, event,
+        notes, balanceOwed, contact, from, to, event, orderLocation,
       } = lastOrder;
 
       const {
@@ -92,6 +92,7 @@ app.get('/lastOrder/:_id', (req, res) => {
         balanceOwed,
         from,
         to,
+        orderLocation,
       };
 
       res.json(reshaped);
@@ -113,7 +114,7 @@ app.post('/orders', (req, res) => {
   } = dataObj;
 
   const {
-    contact, notes, balanceOwed,
+    contact, notes, balanceOwed, orderLocation,
   } = orderDetails;
 
   const {
@@ -134,6 +135,7 @@ app.post('/orders', (req, res) => {
     contact: contact.value,
     notes: notes.value,
     balanceOwed: Number(balanceOwed.value),
+    orderLocation: orderLocation.value,
     from,
     to,
   };
@@ -169,6 +171,7 @@ app.post('/orders', (req, res) => {
           balanceOwed: balanceOwed.value,
           from,
           to,
+          orderLocation: orderLocation.value,
         };
 
         res.json(reshaped);

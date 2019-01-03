@@ -12,11 +12,20 @@ function UpcomingOrder({
           {' '}
           {moment(orderObject.from).format('MMM Do YYYY, h:mm a')}
         </span>
-        <br />
         <span className="toLabel">
           TO:
           {' '}
           {moment(orderObject.to).format('MMM Do YYYY, h:mm a')}
+        </span>
+        <br />
+        <span className="orderLocationLabel">
+          Order Location:
+          {' '}
+          <a
+            href={`https://maps.google.com/?q=${orderObject.orderLocation}`}
+          >
+            {orderObject.orderLocation}
+          </a>
         </span>
       </div>
       <div>
@@ -27,6 +36,8 @@ function UpcomingOrder({
         </span>
         {' –––– '}
         <span className="phoneLabel">
+          Phone:
+          {' '}
           {orderObject.phone}
         </span>
       </div>
