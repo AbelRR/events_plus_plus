@@ -1,8 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 
+import ConfirmationButton from './ConfirmationButton.jsx';
+
 function UpcomingOrder({
   orderObject,
+  isSummary,
+  updateOrderDetails,
 }) {
   return (
     <li>
@@ -101,9 +105,10 @@ function UpcomingOrder({
           : ' Delivered? '
         )}
       </label>
-      <button type="button">
-        REMIND DRIVER!
-      </button>
+      <ConfirmationButton
+        isSummary={isSummary}
+        updateOrderDetails={updateOrderDetails}
+      />
     </li>
   );
 }

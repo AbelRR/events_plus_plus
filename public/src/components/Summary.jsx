@@ -10,7 +10,7 @@ function Summary({
   updateUserIndex,
   updatePhoneNumber,
   clientId,
-  listOfOrders,
+  // listOfOrders,
 }) {
   const updateOrderDetails = (e) => {
     e.preventDefault();
@@ -20,8 +20,8 @@ function Summary({
     })
       .then(() => {
         console.log('new order:', newOrder);
-        const currList = listOfOrders.value;
-        listOfOrders.setValue([...currList, newOrder]);
+        // const currList = listOfOrders.value;
+        // listOfOrders.setValue([...currList, newOrder]);
       });
     updatePageSelector('newOrder');
     updateUserIndex(-1);
@@ -31,10 +31,11 @@ function Summary({
     <div className="orderDetails">
       <h1> CONFIRM EVERYTHING IS CORRECT!</h1>
       <ul>
-        <li>
-          {JSON.stringify(orderObject)}
-        </li>
-        <UpcomingOrder orderObject={orderObject} />
+        <UpcomingOrder
+          orderObject={orderObject}
+          updateOrderDetails={updateOrderDetails}
+          isSummary
+        />
       </ul>
       <button type="button" onClick={e => updateOrderDetails(e)}>
         TEXT CONFIRMATION TO CLIENT & EMAIL NEW ORDER TO OWNER.
