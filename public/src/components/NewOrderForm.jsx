@@ -26,6 +26,7 @@ function selectingFunction(
   phoneNumber,
   updateUserIndex,
   userData = [],
+  getListOfOrders,
 ) {
   const pageSelector = useInputValue('newOrder');
   const dateRange = useInputValue([new Date(), new Date()]);
@@ -65,7 +66,9 @@ function selectingFunction(
   };
 
   if (pageSelector.value === 'newOrder') {
+    console.log('1');
     if (clientId === -1) {
+      console.log('2');
       return (
         <NewClientForm
           phoneNumber={phoneNumber}
@@ -122,17 +125,7 @@ function selectingFunction(
         updateUserIndex={updateUserIndex}
         updatePhoneNumber={phoneNumber.setValue}
         clientId={clientId}
-      />
-    );
-  } if (pageSelector.value === 'newOrder') {
-    return (
-      <PhoneField
-        phoneNumber={phoneNumber}
-        currentNumberId={clientId}
-        userData={
-          axios.get('/clients')
-            .then(success => success.data)
-        }
+        getListOfOrders={getListOfOrders}
       />
     );
   }
@@ -143,6 +136,7 @@ function NewOrderForm({
   phoneNumber,
   updateUserIndex,
   userData,
+  getListOfOrders,
 }) {
   return (
     <div>
@@ -151,7 +145,7 @@ function NewOrderForm({
         phoneNumber,
         updateUserIndex,
         userData,
-        phoneNumber,
+        getListOfOrders,
       )}
     </div>
   );

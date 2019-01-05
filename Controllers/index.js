@@ -59,7 +59,7 @@ module.exports = {
   },
 
   // Update Existing Client with Order/Event Information
-  updateOrder: (_id, newOrder, callback) => {
+  addOrder: (_id, newOrder, callback) => {
     Client.findOneAndUpdate({ _id }, {
       $push: {
         orders: newOrder,

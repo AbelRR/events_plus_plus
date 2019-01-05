@@ -18,7 +18,6 @@ const useInputValue = (initialValue) => {
 };
 
 const getDataFromAPI = (setData) => {
-  // get clients
   axios.get('/clients')
     .then(success => success.data)
     .then(data => setData(data));
@@ -40,18 +39,17 @@ export default function App() {
   const rangeInWeeks = useInputValue(1);
   const listOfOrders = useInputValue([]);
 
-  useEffect(() => {
-    getDataFromAPI(setUserData);
-  }, [listOfOrders.value]);
-
-  useEffect(() => {
+  const getListOfOrders = () => {
     axios.get(`/orders/${startOfDateRange.value.getTime()}`)
       .then(res => res.data)
       .then(data => data.map(item => Object.assign({ phone: item.phone }, item.order)))
       .then(data => data.sort((a, b) => a.from - b.from))
-      .then((data) => {
-        listOfOrders.setValue(data);
-      });
+      .then(data => listOfOrders.setValue(data));
+  };
+
+  useEffect(() => {
+    getDataFromAPI(setUserData);
+    getListOfOrders();
   }, []);
 
   const properties = {
@@ -79,7 +77,7 @@ export default function App() {
         <h1 className="title"> EVENTS++ </h1>
         <CheckForNewUser
           {...properties}
-          listOfOrders={listOfOrders}
+          getListOfOrders={getListOfOrders}
         />
       </div>
     );

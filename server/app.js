@@ -140,7 +140,7 @@ app.post('/orders', (req, res) => {
     to,
   };
 
-  clients.updateOrder(_id, shapedObj, (err, dataOne) => {
+  clients.addOrder(_id, shapedObj, (err, dataOne) => {
     if (err) console.error('error: ', _id, dataObj);
     clients.selectById(_id, (error, data) => {
       if (error) {

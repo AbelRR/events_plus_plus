@@ -33,6 +33,7 @@ function Summary({
   updateUserIndex,
   updatePhoneNumber,
   clientId,
+  getListOfOrders,
 }) {
   const updateOrderDetails = (e) => {
     e.preventDefault();
@@ -42,11 +43,11 @@ function Summary({
     })
       .then(() => {
         const formattedPhone = `+1${String(orderObject.phone).match(/\d+/g).join('')}`;
-
         axios.post('/textOrder', {
           phoneNumber: formattedPhone,
           messageBody: createMessage(orderObject),
         });
+        getListOfOrders();
       });
 
     updatePageSelector('newOrder');
