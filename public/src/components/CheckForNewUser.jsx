@@ -13,7 +13,6 @@ function CheckForNewUser({
   phoneNumber,
   currentNumberId,
   userData,
-  listOfOrders,
 }) {
   const lastDigit = Number(phoneNumber.value[13]);
   let displayValue;
@@ -31,7 +30,6 @@ function CheckForNewUser({
         clientId={userIndex}
         updateUserIndex={updateUserIndex}
         userData={userData}
-        listOfOrders={listOfOrders}
       />
     );
   }

@@ -2,7 +2,8 @@ import React from 'react';
 
 function ConfirmationButton({
   isSummary,
-  updateOrderDetails
+  updateOrderDetails,
+  updateDriverWithOrder,
 }) {
   return (
     <div>
@@ -13,7 +14,7 @@ function ConfirmationButton({
           </button>
         )
         : (
-          <button type="button">
+          <button type="button" onClick={e => updateDriverWithOrder(e)}>
             REMIND DRIVER!
           </button>
         )

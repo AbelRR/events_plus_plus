@@ -181,7 +181,7 @@ app.post('/orders', (req, res) => {
   });
 });
 
-app.post('/textCustomer', (req, res) => {
+app.post('/textOrder', (req, res) => {
   const { phoneNumber, messageBody } = req.body;
   console.log('databody type: ', typeof req.body);
   console.log('toNumber', phoneNumber, 'body: ', messageBody);

@@ -1,13 +1,49 @@
 import React from 'react';
+import axios from 'axios';
 import moment from 'moment';
 
 import ConfirmationButton from './ConfirmationButton.jsx';
+
+const createMessage = (orderObject) => {
+  const {
+    event, from, to, balanceOwed, contact, phone, notes, orderLocation,
+  } = orderObject;
+  const {
+    tables, chairs, canopies, jumpers,
+  } = event;
+
+  let orderVariables = '';
+  if (tables > 0) {
+    orderVariables += `${tables} tables. `;
+  } if (chairs > 0) {
+    orderVariables += `${chairs} chairs. `;
+  } if (canopies !== '') {
+    orderVariables += `${canopies} canopies. `;
+  } if (jumpers !== '') {
+    orderVariables += `${jumpers} jumpers. `;
+  }
+
+  return `NEW ORDER:
+  ${contact}'s phone is: ${phone}.
+  ${orderVariables} ADDRESS: ${orderLocation}. To be DELIVERED at ${moment(from).format('MMM Do, h:mm a')}, and PICKED-UP at ${moment(to).format('MMM Do, h:mm a')}. The REMAINING BALANCE is $${balanceOwed} Dollars. Additional Notes: ${notes}`;
+};
 
 function UpcomingOrder({
   orderObject,
   isSummary,
   updateOrderDetails,
 }) {
+  const updateDriverWithOrder = (e) => {
+    e.preventDefault();
+    const formattedPhone = '15103434956'; // `+1${String(driver.phone).match(/\d+/g).join('')}`;
+
+    axios.post('/textOrder', { // TODO: change endpoint
+      phoneNumber: formattedPhone,
+      messageBody: createMessage(orderObject),
+    });
+  };
+
+
   return (
     <li>
       <div>
@@ -108,6 +144,7 @@ function UpcomingOrder({
       <ConfirmationButton
         isSummary={isSummary}
         updateOrderDetails={updateOrderDetails}
+        updateDriverWithOrder={updateDriverWithOrder}
       />
     </li>
   );

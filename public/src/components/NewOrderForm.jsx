@@ -26,7 +26,6 @@ function selectingFunction(
   phoneNumber,
   updateUserIndex,
   userData = [],
-  listOfOrders,
 ) {
   const pageSelector = useInputValue('newOrder');
   const dateRange = useInputValue([new Date(), new Date()]);
@@ -122,9 +121,7 @@ function selectingFunction(
         updatePageSelector={pageSelector.setValue}
         updateUserIndex={updateUserIndex}
         updatePhoneNumber={phoneNumber.setValue}
-        userData={userData}
         clientId={clientId}
-        listOfOrders={listOfOrders}
       />
     );
   } if (pageSelector.value === 'newOrder') {
@@ -146,7 +143,6 @@ function NewOrderForm({
   phoneNumber,
   updateUserIndex,
   userData,
-  listOfOrders,
 }) {
   return (
     <div>
@@ -155,6 +151,7 @@ function NewOrderForm({
         phoneNumber,
         updateUserIndex,
         userData,
+        phoneNumber,
       )}
     </div>
   );

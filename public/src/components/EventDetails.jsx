@@ -21,24 +21,24 @@ function EventDetails({
       <form onSubmit={(e => updateEventDetails(e))}>
         <span>
           Tables:
-          <input name="tables" type="number" className="formNumbersInput" onChange={e => tables.onChange(e)} required />
+          <input name="tables" type="number" className="formNumbersInput" onChange={e => tables.onChange(e)} />
         </span>
         <br />
         <span>
           Chairs:
-          <input name="chairs" type="number" className="formNumbersInput" onChange={e => chairs.onChange(e)} required />
+          <input name="chairs" type="number" className="formNumbersInput" onChange={e => chairs.onChange(e)} />
         </span>
         <br />
         <span>
           Canopies:
           {/* Make Drop Down Options  */}
-          <input name="canopies" type="text" onChange={e => canopies.onChange(e)} required />
+          <input name="canopies" type="text" onChange={e => canopies.onChange(e)} />
         </span>
         <br />
         <span>
           Jumpers:
           {/* Make Drop Down Options  */}
-          <input name="jumpers" type="text" onChange={e => jumpers.onChange(e)} required />
+          <input name="jumpers" type="text" onChange={e => jumpers.onChange(e)} />
         </span>
         <br />
         <input className="submitButton" type="submit" value="Next" />

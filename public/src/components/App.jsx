@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import moment from 'moment';
 
 import PhoneField from './PhoneField.jsx';
 import CheckForNewUser from './CheckForNewUser.jsx';
-// import CurrentInventory from './Inventory.jsx';
-// import UpcomingOrders from './UpcomingOrders.jsx';
-// import UpcomingOrdersDate from './UpcomingOrdersDate.jsx';
 import UpcomingOrdersComponent from './UpcomingOrdersComponent.jsx';
 
 const useInputValue = (initialValue) => {
@@ -26,20 +22,29 @@ const getDataFromAPI = (setData) => {
   axios.get('/clients')
     .then(success => success.data)
     .then(data => setData(data));
-  // get upcoming orders
+};
+
+const currDate = new Date();
+const startOfDay = (date) => {
+  const year = date.getFullYear();
+  const day = date.getUTCDate();
+  const month = date.getMonth();
+  return new Date(year, month, day - 1);
 };
 
 export default function App() {
   const [userData, setUserData] = useState([]);
   const phoneNumber = useInputValue('');
   const currentNumberId = useInputValue(-1);
-  const startOfDateRange = useInputValue(new Date());
+  const startOfDateRange = useInputValue(startOfDay(currDate));
   const rangeInWeeks = useInputValue(1);
   const listOfOrders = useInputValue([]);
 
   useEffect(() => {
     getDataFromAPI(setUserData);
+  }, [listOfOrders.value]);
 
+  useEffect(() => {
     axios.get(`/orders/${startOfDateRange.value.getTime()}`)
       .then(res => res.data)
       .then(data => data.map(item => Object.assign({ phone: item.phone }, item.order)))
@@ -47,7 +52,7 @@ export default function App() {
       .then((data) => {
         listOfOrders.setValue(data);
       });
-  }, [listOfOrders.value]);
+  }, []);
 
   const properties = {
     phoneNumber, currentNumberId, userData,

@@ -25,7 +25,7 @@ function UpcomingOrdersDate({
       clearIcon={null}
       onClickDay={date => makeUpdates(date)}
       value={value}
-      minDate={new Date()}
+      // minDate={new Date()}
     />
   );
 }
