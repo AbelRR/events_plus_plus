@@ -4,6 +4,7 @@ import UpcomingOrder from './UpcomingOrder.jsx';
 
 function UpcomingOrders({
   listOfOrders,
+  getListOfOrders,
 }) {
   return (
     <ul>
@@ -11,6 +12,7 @@ function UpcomingOrders({
         <UpcomingOrder
           orderObject={order}
           key={JSON.stringify(order)}
+          getListOfOrders={getListOfOrders}
         />
       ))}
     </ul>

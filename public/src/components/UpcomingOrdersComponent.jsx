@@ -8,6 +8,8 @@ function UpcomingOrdersComponent({
   startOfDateRange,
   listOfOrders,
   rangeInWeeks,
+  getListOfOrders,
+  clientId,
 }) {
   return (
     <div>
@@ -37,6 +39,7 @@ function UpcomingOrdersComponent({
       <UpcomingOrders
         className="upcomingOrdersList"
         listOfOrders={listOfOrders}
+        getListOfOrders={getListOfOrders}
       />
     </div>
   );

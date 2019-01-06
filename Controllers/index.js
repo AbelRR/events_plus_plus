@@ -35,12 +35,12 @@ module.exports = {
       if (err) return callback(err, null);
       const arrOfOrders = [];
       items.forEach((person) => {
+        const { _id: clientId } = person;
         person.orders.forEach((order) => {
-          const { _id } = order;
           if (order.from >= fromDateInMilliseconds) {
             arrOfOrders.push({
               phone: person.phone,
-              orderId: _id,
+              clientId,
               order,
             });
           }

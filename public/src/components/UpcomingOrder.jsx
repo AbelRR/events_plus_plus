@@ -32,6 +32,7 @@ function UpcomingOrder({
   orderObject,
   isSummary, // coming from <Summary />
   updateOrderDetails, // coming from <Summary />
+  getListOfOrders,
 }) {
   const updateDriverWithOrder = (e) => {
     e.preventDefault();
@@ -43,6 +44,16 @@ function UpcomingOrder({
     });
   };
 
+  const setOrderStatus = (e) => {
+    const { _id, clientId } = orderObject;
+    console.log(e.target.checked);
+    console.log('orderId: ', _id);
+    console.log('clientId: ', clientId);
+    axios.patch(`/orders/${clientId}-${_id}`)
+      .then(() => {
+        getListOfOrders();
+      });
+  };
 
   return (
     <li>
@@ -136,8 +147,8 @@ function UpcomingOrder({
           <label>
             <input
               type="checkbox"
-              // checked="{props.isConfirmed}"
-              // onChange="{props.handleConfirmation}"
+              checked={orderObject.pickedUp}
+              onChange={e => setOrderStatus(e)}
             />
             {(orderObject.delivered
               ? ' Picked-up? '
