@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-// import NewClientForm && ConfirmClient
 import NewOrderForm from './NewOrderForm.jsx';
 
 // function getPhone(maskedPhoneNumber) {
@@ -18,10 +17,6 @@ function CheckForNewUser({
   const lastDigit = Number(phoneNumber.value[13]);
   let displayValue;
 
-  // TODO: instead: use Twilio.Lookup to verify phoneNumber is a valid US Phone Number
-  // if (isNaN(lastDigit) || phoneNumber.value === '(___) ___-____') {
-  //   displayValue = 'Enter valid US Phone Number.';
-  // } else 
   if (typeof lastDigit === 'number') {
     const userIndex = currentNumberId.value;
     const updateUserIndex = currentNumberId.setValue;

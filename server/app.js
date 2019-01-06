@@ -46,6 +46,16 @@ app.get('/orders/:fromDateInMilliseconds', (req, res) => {
   });
 });
 
+app.patch('/orders/:ids', (req, res) => {
+  const { ids } = req.params;
+  const vals = ids.split('-');
+  const client = vals[0];
+  const order = vals[1];
+  clients.updateOrderStatus(client, order, (response) => {
+    res.json(response);
+  });
+});
+
 app.get('/client/:id', (req, res) => {
   const { id } = req.params;
   clients.selectById(id, (err, data) => {
@@ -53,49 +63,6 @@ app.get('/client/:id', (req, res) => {
       res.sendStatus(500);
     } else {
       res.json(data);
-    }
-  });
-});
-
-app.get('/lastOrder/:_id', (req, res) => {
-  const { _id } = req.params;
-  clients.selectById(_id, (err, data) => {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      const lastOrder = data[0].orders[data[0].orders.length - 1];
-      const {
-        name, address, phone,
-      } = data[0];
-
-      const {
-        notes, balanceOwed, contact, from, to, event, orderLocation,
-      } = lastOrder;
-
-      const {
-        tables, chairs, canopies, jumpers,
-      } = event;
-
-      const reshaped = {
-        _id,
-        name,
-        address,
-        phone,
-        event: {
-          tables,
-          chairs,
-          canopies,
-          jumpers,
-        },
-        contact,
-        notes,
-        balanceOwed,
-        from,
-        to,
-        orderLocation,
-      };
-
-      res.json(reshaped);
     }
   });
 });
@@ -138,6 +105,8 @@ app.post('/orders', (req, res) => {
     orderLocation: orderLocation.value,
     from,
     to,
+    delivered: false,
+    pickedUp: false,
   };
 
   clients.addOrder(_id, shapedObj, (err, dataOne) => {

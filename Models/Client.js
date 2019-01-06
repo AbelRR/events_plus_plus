@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const orderSchema = mongoose.Schema({
   from: Number,
   to: Number,
+  delivered: Boolean,
+  pickedUp: Boolean,
   event: {
     tables: Number,
     chairs: Number,

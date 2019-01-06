@@ -36,9 +36,11 @@ module.exports = {
       const arrOfOrders = [];
       items.forEach((person) => {
         person.orders.forEach((order) => {
+          const { _id } = order;
           if (order.from >= fromDateInMilliseconds) {
             arrOfOrders.push({
               phone: person.phone,
+              orderId: _id,
               order,
             });
           }
@@ -70,10 +72,25 @@ module.exports = {
     });
   },
 
+  updateOrderStatus: (clientId, orderId, callback) => {
+    Client.findById(clientId, (err, client) => {
+      const order = client.orders.id(orderId);
+      if (order.delivered === false) {
+        order.set({ delivered: true });
+      } else {
+        order.set({ pickedUp: true });
+      }
+      client.save()
+        .then(savedOrder => callback(savedOrder))
+        .catch(error => callback(error));
+    });
+  },
+
+  // Twilio Related API calls
   messageCustomer: (toNumber, messageBody, callback) => {
     twilioClient.messages
       .create({
-        from: '+15103691008',
+        from: process.env.TWILIO_PHONENUMBER,
         body: messageBody,
         to: toNumber,
       })

@@ -30,8 +30,8 @@ const createMessage = (orderObject) => {
 
 function UpcomingOrder({
   orderObject,
-  isSummary,
-  updateOrderDetails,
+  isSummary, // coming from <Summary />
+  updateOrderDetails, // coming from <Summary />
 }) {
   const updateDriverWithOrder = (e) => {
     e.preventDefault();
@@ -130,17 +130,22 @@ function UpcomingOrder({
         }
         <br />
       </div>
-      <label>
-        <input
-          type="checkbox"
-          // checked="{props.isConfirmed}"
-          // onChange="{props.handleConfirmation}"
-        />
-        {(orderObject.delivered
-          ? ' Picked-up? '
-          : ' Delivered? '
-        )}
-      </label>
+      {isSummary
+        ? <span />
+        : (
+          <label>
+            <input
+              type="checkbox"
+              // checked="{props.isConfirmed}"
+              // onChange="{props.handleConfirmation}"
+            />
+            {(orderObject.delivered
+              ? ' Picked-up? '
+              : ' Delivered? '
+            )}
+          </label>
+        )
+      }
       <ConfirmationButton
         isSummary={isSummary}
         updateOrderDetails={updateOrderDetails}
