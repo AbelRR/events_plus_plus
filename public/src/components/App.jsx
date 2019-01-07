@@ -28,7 +28,7 @@ const startOfDay = (date) => {
   const year = date.getFullYear();
   const day = date.getUTCDate();
   const month = date.getMonth();
-  return new Date(year, month, day);
+  return new Date(year, month, day - 1); // UTC is 14hours ahead of Pacific Time
 };
 
 export default function App() {
@@ -40,9 +40,15 @@ export default function App() {
   const listOfOrders = useInputValue([]);
 
   const getListOfOrders = () => {
-    axios.get(`/orders/${startOfDateRange.value.getTime()}`)
+    const startInMilliseconds = startOfDateRange.value.getTime();
+    const weekInMilliseconds = 604800000;
+    const endInMilliseconds = startInMilliseconds + (rangeInWeeks.value * weekInMilliseconds);
+    axios.get(`/orders/${startInMilliseconds}-${endInMilliseconds}`)
       .then(res => res.data)
-      .then(data => data.map(item => Object.assign({ phone: item.phone, clientId: item.clientId }, item.order)))
+      .then(data => data.map(item => Object.assign(
+        { phone: item.phone, clientId: item.clientId },
+        item.order,
+      )))
       .then(data => data.sort((a, b) => a.from - b.from))
       .then(data => listOfOrders.setValue(data));
   };

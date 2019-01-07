@@ -35,9 +35,12 @@ app.get('/clients', (req, res) => {
   });
 });
 
-app.get('/orders/:fromDateInMilliseconds', (req, res) => {
-  const { fromDateInMilliseconds } = req.params;
-  clients.getUpcomingOrdersByStartDate(fromDateInMilliseconds, (err, data) => {
+app.get('/orders/:fromAndTo', (req, res) => {
+  const { fromAndTo } = req.params;
+  const vals = fromAndTo.split('-');
+  const from = vals[0];
+  const to = vals[1];
+  clients.getUpcomingOrdersByStartDate(from, to, (err, data) => {
     if (err) {
       res.sendStatus(500);
     } else {

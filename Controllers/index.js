@@ -30,14 +30,15 @@ module.exports = {
     });
   },
 
-  getUpcomingOrdersByStartDate: (fromDateInMilliseconds, callback) => {
+  getUpcomingOrdersByStartDate: (fromDateInMilliseconds, toDateInMilliseconds, callback) => {
     Client.find({}, (err, items) => {
       if (err) return callback(err, null);
       const arrOfOrders = [];
       items.forEach((person) => {
         const { _id: clientId } = person;
         person.orders.forEach((order) => {
-          if (order.from >= fromDateInMilliseconds) {
+          if (order.from >= fromDateInMilliseconds
+          ) {
             arrOfOrders.push({
               phone: person.phone,
               clientId,

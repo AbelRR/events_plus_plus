@@ -20,11 +20,20 @@ function UpcomingOrdersComponent({
         <UpcomingOrdersDate
           startOfDateRange={startOfDateRange}
           listOfOrders={listOfOrders}
+          getListOfOrders={getListOfOrders}
         />
         <span>
           # of Weeks:
           {' '}
-          <input type="number" className="weeksInput" onChange={e => rangeInWeeks.onChange(e)} />
+          <input
+            type="number"
+            placeholder={1}
+            className="weeksInput"
+            onChange={(e) => {
+              rangeInWeeks.setValue(Number(e.target.value));
+              getListOfOrders();
+            }}
+          />
         </span>
         <p>
           FROM:

@@ -30,25 +30,22 @@ const createMessage = (orderObject) => {
 
 function UpcomingOrder({
   orderObject,
-  isSummary, // coming from <Summary />
-  updateOrderDetails, // coming from <Summary />
+  isSummary,
+  updateOrderDetails,
   getListOfOrders,
 }) {
   const updateDriverWithOrder = (e) => {
     e.preventDefault();
     const formattedPhone = '15103434956'; // `+1${String(driver.phone).match(/\d+/g).join('')}`;
 
-    axios.post('/textOrder', { // TODO: change endpoint
+    axios.post('/textOrder', {
       phoneNumber: formattedPhone,
       messageBody: createMessage(orderObject),
     });
   };
 
-  const setOrderStatus = (e) => {
+  const setOrderStatus = () => {
     const { _id, clientId } = orderObject;
-    console.log(e.target.checked);
-    console.log('orderId: ', _id);
-    console.log('clientId: ', clientId);
     axios.patch(`/orders/${clientId}-${_id}`)
       .then(() => {
         getListOfOrders();
@@ -148,7 +145,7 @@ function UpcomingOrder({
             <input
               type="checkbox"
               checked={orderObject.pickedUp}
-              onChange={e => setOrderStatus(e)}
+              onChange={() => setOrderStatus()}
             />
             {(orderObject.delivered
               ? ' Picked-up? '
