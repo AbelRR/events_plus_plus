@@ -38,6 +38,8 @@ export default function App() {
   const startOfDateRange = useInputValue(startOfDay(currDate));
   const rangeInWeeks = useInputValue(1);
   const listOfOrders = useInputValue([]);
+  const deliveredFilter = useInputValue(false);
+  const pickedUpFilter = useInputValue(false);
 
   const getListOfOrders = () => {
     const startInMilliseconds = startOfDateRange.value.getTime();
@@ -48,15 +50,43 @@ export default function App() {
       .then(data => data.map(item => Object.assign(
         { phone: item.phone, clientId: item.clientId },
         item.order,
-      )))
+      )).filter((item) => {
+        const delivered = deliveredFilter.value;
+        const pickedUp = pickedUpFilter.value;
+        if (delivered === false
+            && pickedUp === false) {
+          return item;
+        }
+        if (delivered === true
+          && pickedUp === false) {
+          return item.delivered;
+        }
+        if (delivered === true
+          && pickedUp === true) {
+          return item.delivered && item.pickedUp;
+        }
+        return item;
+      }))
       .then(data => data.sort((a, b) => a.from - b.from))
       .then(data => listOfOrders.setValue(data));
   };
 
   useEffect(() => {
     getDataFromAPI(setUserData);
-    getListOfOrders();
   }, []);
+
+  useEffect(() => {
+    getListOfOrders();
+    console.log([deliveredFilter.value, pickedUpFilter.value]);
+  }, [pickedUpFilter.value || deliveredFilter.value]);
+
+  useEffect(() => {
+    if (deliveredFilter.value === false
+      && pickedUpFilter.value === true) {
+      alert('AGH! Delivered must be also set to true!!!');
+      pickedUpFilter.setValue(false);
+    }
+  });
 
   const properties = {
     phoneNumber, currentNumberId, userData,
@@ -75,6 +105,8 @@ export default function App() {
               listOfOrders={listOfOrders}
               rangeInWeeks={rangeInWeeks}
               getListOfOrders={getListOfOrders}
+              deliveredFilter={deliveredFilter}
+              pickedUpFilter={pickedUpFilter}
             />
           ))}
         </div>

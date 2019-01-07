@@ -9,7 +9,8 @@ function UpcomingOrdersComponent({
   listOfOrders,
   rangeInWeeks,
   getListOfOrders,
-  clientId,
+  deliveredFilter,
+  pickedUpFilter,
 }) {
   return (
     <div>
@@ -44,6 +45,28 @@ function UpcomingOrdersComponent({
           {' '}
           {moment(startOfDateRange.value).add(rangeInWeeks.value, 'weeks').format('MMMM Do YYYY')}
         </p>
+        <span>
+          Delivered Orders:
+          {' '}
+          <input
+            type="checkbox"
+            checked={deliveredFilter.value}
+            onChange={(e) => {
+              deliveredFilter.setValue(e.target.checked);
+            }}
+          />
+        </span>
+        <span>
+          Picked Up Orders:
+          {' '}
+          <input
+            type="checkbox"
+            checked={pickedUpFilter.value}
+            onChange={(e) => {
+              pickedUpFilter.setValue(e.target.checked);
+            }}
+          />
+        </span>
       </span>
       <UpcomingOrders
         className="upcomingOrdersList"
