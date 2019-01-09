@@ -37,6 +37,16 @@ npm install react@16.7.0-alpha.0 --save
 npm install react-dom@16.7.0-alpha.0 --save
 ```
 
+### Starting the project on your local machine
+
+From within the project root directory:
+
+```sh
+npm start
+npm run webpack-watch
+```
+Now open http://localhost:4000 on your browser. 
+
 ## Follow or connect with me on social sites :beers:
 - [Twitter](https://twitter.com/Abel_Abel_34)
 - [LinkedIn](linkedin.com/in/AbelRegalado)
