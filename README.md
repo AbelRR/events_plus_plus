@@ -1,8 +1,6 @@
 
 
-#Welcome to Events++ Official Repository
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/A0aaiB7AqxI" frameborder="0" allowfullscreen></iframe>
+# Welcome to Events++ Official Repository
 
 [![Events++ Video Demo & Motivation](https://i.imgur.com/RTdMB0C.png)](https://www.youtube.com/watch?v=A0aaiB7AqxI)
 https://www.youtube.com/embed/A0aaiB7AqxI
