@@ -3,7 +3,7 @@
 # Welcome to Events++ Official Repository
 
 [![Events++ Video Demo & Motivation](https://i.imgur.com/RTdMB0C.png)](https://www.youtube.com/watch?v=A0aaiB7AqxI)
-https://www.youtube.com/embed/A0aaiB7AqxI
+https://www.youtube.com/watch?v=A0aaiB7AqxI
 
 ## Table of Contents
 
