@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ConfirmationButton({
   isSummary,
@@ -22,5 +23,11 @@ function ConfirmationButton({
     </div>
   );
 }
+
+ConfirmationButton.propTypes = {
+  isSummary: PropTypes.func.isRequired,
+  updateOrderDetails: PropTypes.func.isRequired,
+  updateDriverWithOrder: PropTypes.func.isRequired,
+};
 
 export default ConfirmationButton;

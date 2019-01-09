@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import LocationSearchInput from './PlacesAutocomplete.jsx';
 
@@ -47,6 +48,9 @@ function OrderDetails({
   );
 }
 
-export default OrderDetails;
+OrderDetails.propTypes = {
+  orderDetails: PropTypes.objectOf(PropTypes.func).isRequired,
+  updatePageSelector: PropTypes.func.isRequired,
+};
 
-// ***************** TODO: ADD PROPTYPES ***************** //
+export default OrderDetails;

@@ -77,8 +77,11 @@ export default function App() {
 
   useEffect(() => {
     getListOfOrders();
-    console.log([deliveredFilter.value, pickedUpFilter.value]);
-  }, [pickedUpFilter.value || deliveredFilter.value]);
+  }, [deliveredFilter.value]);
+
+  useEffect(() => {
+    getListOfOrders();
+  }, [pickedUpFilter.value]);
 
   useEffect(() => {
     if (deliveredFilter.value === false

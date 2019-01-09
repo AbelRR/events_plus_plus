@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import UpcomingOrder from './UpcomingOrder.jsx';
 
@@ -18,5 +19,10 @@ function UpcomingOrders({
     </ul>
   );
 }
+
+UpcomingOrders.propTypes = {
+  listOfOrders: PropTypes.arrayOf(PropTypes.object).isRequired,
+  getListOfOrders: PropTypes.func.isRequired,
+};
 
 export default UpcomingOrders;

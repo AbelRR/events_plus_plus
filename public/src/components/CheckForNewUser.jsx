@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import NewOrderForm from './NewOrderForm.jsx';
 
@@ -37,5 +38,12 @@ function CheckForNewUser({
     </div>
   );
 }
+
+CheckForNewUser.propTypes = {
+  phoneNumber: PropTypes.objectOf(PropTypes.func).isRequired,
+  currentNumberId: PropTypes.objectOf(PropTypes.func).isRequired,
+  userData: PropTypes.objectOf(PropTypes.func).isRequired,
+  getListOfOrders: PropTypes.func.isRequired,
+};
 
 export default CheckForNewUser;

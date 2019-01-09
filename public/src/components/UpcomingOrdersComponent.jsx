@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import UpcomingOrders from './UpcomingOrders.jsx';
 import UpcomingOrdersDate from './UpcomingOrdersDate.jsx';
@@ -76,5 +77,14 @@ function UpcomingOrdersComponent({
     </div>
   );
 }
+
+UpcomingOrdersComponent.propTypes = {
+  startOfDateRange: PropTypes.objectOf(PropTypes.func).isRequired,
+  listOfOrders: PropTypes.arrayOf(PropTypes.object).isRequired,
+  rangeInWeeks: PropTypes.objectOf(PropTypes.func).isRequired,
+  getListOfOrders: PropTypes.func.isRequired,
+  deliveredFilter: PropTypes.bool.isRequired,
+  pickedUpFilter: PropTypes.bool.isRequired,
+};
 
 export default UpcomingOrdersComponent;

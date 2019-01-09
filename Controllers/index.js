@@ -5,8 +5,6 @@ const twilioClient = require('twilio')(accountSid, authToken);
 const Client = require('../Models/Client');
 require('dotenv').config();
 
-// TODO: UPDATE API FUNCTION NAMES TO *RESTful Function Names*
-
 module.exports = {
 
   selectAll: (callback) => {

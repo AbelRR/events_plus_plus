@@ -23,9 +23,9 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
+
 // REST CRUD:
 app.get('/clients', (req, res) => {
-  // clients.selectOrdersByClientId();
   clients.selectAll((err, data) => {
     if (err) {
       res.sendStatus(500);
@@ -157,9 +157,7 @@ app.post('/textOrder', (req, res) => {
   const { phoneNumber, messageBody } = req.body;
   console.log('databody type: ', typeof req.body);
   console.log('toNumber', phoneNumber, 'body: ', messageBody);
-  // res.send({ dataBODY: { phoneNumber, messageBody } });
   clients.messageCustomer(phoneNumber, messageBody, (messageData) => {
-    // console.log(messageData);
     res.send(messageData);
   });
 });

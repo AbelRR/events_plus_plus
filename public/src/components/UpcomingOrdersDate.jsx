@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import DatePicker from 'react-date-picker';
 
@@ -31,5 +31,10 @@ function UpcomingOrdersDate({
     />
   );
 }
+
+UpcomingOrdersDate.propTypes = {
+  startOfDateRange: PropTypes.objectOf(PropTypes.func).isRequired,
+  getListOfOrders: PropTypes.func.isRequired,
+};
 
 export default UpcomingOrdersDate;

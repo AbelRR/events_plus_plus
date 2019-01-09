@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+
 import LocationSearchInput from './PlacesAutocomplete.jsx';
 
 const useInputValue = (initialValue) => {
@@ -44,7 +46,7 @@ function NewClientForm({
 
   return (
     <div>
-      <h1> ADD NEW CLIENT </h1>
+      <h2> ADD NEW CLIENT </h2>
       <p>{`${phoneNumber.value} => ${name.value} @ ${address.value}`}</p>
       <form onSubmit={(e) => {
         e.preventDefault();
@@ -63,6 +65,10 @@ function NewClientForm({
   );
 }
 
-export default NewClientForm;
+NewClientForm.propTypes = {
+  phoneNumber: PropTypes.objectOf(PropTypes.func).isRequired,
+  updateUserIndex: PropTypes.func.isRequired,
+  updatePageSelector: PropTypes.func.isRequired,
+};
 
-// ***************** TODO: ADD PROPTYPES ***************** //
+export default NewClientForm;

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import ConfirmationButton from './ConfirmationButton.jsx';
 
@@ -162,5 +163,12 @@ function UpcomingOrder({
     </li>
   );
 }
+
+UpcomingOrder.propTypes = {
+  orderObject: PropTypes.objectOf(PropTypes.func).isRequired,
+  isSummary: PropTypes.bool.isRequired,
+  updateOrderDetails: PropTypes.func.isRequired,
+  getListOfOrders: PropTypes.func.isRequired,
+};
 
 export default UpcomingOrder;

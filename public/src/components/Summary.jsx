@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import UpcomingOrder from './UpcomingOrder.jsx';
 
@@ -56,7 +57,7 @@ function Summary({
   };
   return (
     <div className="orderDetails">
-      <h1> CONFIRM EVERYTHING IS CORRECT!</h1>
+      <h2> CONFIRM EVERYTHING IS CORRECT!</h2>
       <ul>
         <UpcomingOrder
           orderObject={orderObject}
@@ -68,6 +69,14 @@ function Summary({
   );
 }
 
-export default Summary;
+Summary.propTypes = {
+  newOrder: PropTypes.objectOf(PropTypes.func).isRequired,
+  orderObject: PropTypes.objectOf(PropTypes.func).isRequired,
+  updatePageSelector: PropTypes.func.isRequired,
+  updateUserIndex: PropTypes.func.isRequired,
+  updatePhoneNumber: PropTypes.func.isRequired,
+  clientId: PropTypes.objectOf(PropTypes.func).isRequired,
+  getListOfOrders: PropTypes.func.isRequired,
+};
 
-// ***************** TODO: ADD PROPTYPES ***************** //
+export default Summary;

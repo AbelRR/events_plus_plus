@@ -1,7 +1,8 @@
 import React from 'react';
-import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
-
 import moment from 'moment';
+import PropTypes from 'prop-types';
+
+import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 
 function DateRangePicker({
   dateRange,
@@ -47,6 +48,9 @@ function DateRangePicker({
   );
 }
 
-export default DateRangePicker;
+DateRangePicker.propTypes = {
+  updatePageSelector: PropTypes.func.isRequired,
+  dateRange: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
 
-// ***************** TODO: ADD PROPTYPES ***************** //
+export default DateRangePicker;

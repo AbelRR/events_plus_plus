@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import NewClientForm from './NewClientForm.jsx';
 import DateRangePicker from './DateRangePicker.jsx';
@@ -151,6 +152,14 @@ function NewOrderForm({
   );
 }
 
+
+NewOrderForm.propTypes = {
+  clientId: PropTypes.number.isRequired,
+  phoneNumber: PropTypes.func.isRequired,
+  updateUserIndex: PropTypes.func.isRequired,
+  userData: PropTypes.objectOf(PropTypes.func).isRequired,
+  getListOfOrders: PropTypes.func.isRequired,
+};
 export default NewOrderForm;
 
 // ***************** TODO: ADD PROPTYPES ***************** //

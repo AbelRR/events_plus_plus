@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function EventDetails({
   eventDetails,
@@ -47,6 +48,9 @@ function EventDetails({
   );
 }
 
-export default EventDetails;
+EventDetails.propTypes = {
+  eventDetails: PropTypes.objectOf(PropTypes.func).isRequired,
+  updatePageSelector: PropTypes.func.isRequired,
+};
 
-// ***************** TODO: ADD PROPTYPES ***************** //
+export default EventDetails;

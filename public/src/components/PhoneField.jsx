@@ -1,4 +1,5 @@
 import React /* , { useState } */ from 'react';
+import PropTypes from 'prop-types';
 
 import NumberFormat from 'react-number-format';
 
@@ -61,5 +62,11 @@ function PhoneField({
     </div>
   );
 }
+
+PhoneField.propTypes = {
+  phoneNumber: PropTypes.objectOf(PropTypes.func).isRequired,
+  currentNumberId: PropTypes.number.isRequired,
+  userData: PropTypes.objectOf(PropTypes.func).isRequired,
+};
 
 export default PhoneField;
