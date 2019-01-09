@@ -4,6 +4,8 @@
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/A0aaiB7AqxI" frameborder="0" allowfullscreen></iframe>
 
+[![Events++ Video Demo & Motivation](https://img.youtube.com/vi/A0aaiB7AqxI/0.jpg)](https://www.youtube.com/watch?v=A0aaiB7AqxI)
+
 ## Table of Contents
 
 1. [Requirements](#requirements)
